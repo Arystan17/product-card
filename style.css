@@ -61,7 +61,7 @@
   line-height: 24px;
 }
 
-.products-list {
+.product-list {
   display: flex;
   flex-wrap: wrap;
   gap: 45px;
