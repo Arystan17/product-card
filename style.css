@@ -68,6 +68,7 @@
   justify-content: center;
   margin-top: 110px;
   position: relative;
+  list-style-type: none;
 }
 
 .title {
