@@ -72,21 +72,25 @@
 }
 
 .title {
-    font-size: 70px;
-    font-weight: 400;
-    line-height: 78px;
-    margin: 0;
-    text-align: center;
-    color: #515076;
-    margin-top: 220px;
+  font-size: 70px;
+  font-weight: 400;
+  line-height: 78px;
+  margin: 0;
+  text-align: center;
+  color: #515076;
+  margin-top: 220px;
 }
 
 .background-image {
-    background-image: url("img/background-flowers.png");
-    width: 790px;
-    height: 697px;
-    z-index: -1;
-    position: absolute;
-    top: -300px;
-    left: 270px;    
+  background-image: url("img/background-flowers.png");
+  width: 790px;
+  height: 697px;
+  z-index: -1;
+  position: absolute;
+  top: -300px;
+  left: 270px;    
+}
+
+.bg-blueviolet {
+  background-color: blueviolet
 }
