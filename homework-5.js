@@ -1,14 +1,14 @@
 // Задание 3 - Создание функции принимающей два параметра
 
-function getTemperature(city, temperature) {
+function logTemperature(city, temperature) {
   console.log(`Сейчас в ${city} температура - ${temperature} градусов по Цельсию `)
 }
 
-getTemperature(`Омске`, `+15`)
+logTemperature(`Омске`, `+15`)
 
 // Задание 4 - Задача со скоростью света 
 
-const speedOfLight = 299762;
+const SPEED_OF_LIGHT = 299762;
 
 function checkSpeed(speed) {
   if (speed > speedOfLight) {
