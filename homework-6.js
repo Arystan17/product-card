@@ -85,11 +85,11 @@ const hockeyTeam = [
 
 hockeyTeam.push(
   {
-  team: "Спартак",
-  league: "КХЛ",
-  city: "Москва",
-  coach: "Алексей Жамнов"
- }
+    team: "Спартак",
+    league: "КХЛ",
+    city: "Москва",
+    coach: "Алексей Жамнов",
+  }
 );
 
 console.log(hockeyTeam);
@@ -98,25 +98,25 @@ console.log(hockeyTeam);
 
 const hockeyTeamNhl = [
   {
-  team: "Seattle Kraken",
-  league: "NHL",
-  city: "Сиэтл",
-  coach: "Lane Lambert"
-},
+    team: "Seattle Kraken",
+    league: "NHL",
+    city: "Сиэтл",
+    coach: "Lane Lambert",
+  },
 
-{
-  team: "New York Rangers",
-  league: "NHL",
-  city: "Нью‑Йорк",
-  coach: "Mike Sullivan"
-},
+  {
+    team: "New York Rangers",
+    league: "NHL",
+    city: "Нью‑Йорк",
+    coach: "Mike Sullivan",
+  },
 
-{
-  team: "Pittsburgh Penguins",
-  league: "NHL",
-  city: "Питтсбург",
-  coach: "Dan Muse"
-}
+  {
+    team: "Pittsburgh Penguins",
+    league: "NHL",
+    city: "Питтсбург",
+    coach: "Dan Muse",
+  },
 ];
 
 const allTeams = [...hockeyTeam, ...hockeyTeamNhl];
