@@ -42,7 +42,7 @@ console.log(updateComments);
 
 const idAndName = comments.map(comment => ({
   id: comment.id,
-  name: comment.name
+  name: comment.name,
 }));
 
 console.log(idAndName);
