@@ -26,12 +26,16 @@ console.log(getReversedArray(hockeyTeams));
 
 // Задание 7 - Вывод в консоль массив тех комментариев, почта пользователей которых содержит ".com"
 
-const comEmails = comments.filter(comment => comment.email.includes(".com")); 
+const comEmails = comments.filter(comment => comment.email.includes(".com"));
 console.log(comEmails);
 
 // Задание 8 - Перебрать массив таким образом, что бы пользователи с id меньше или равно 5 имели postId: 2, а те, у кого id больше 5, имели postId: 1
 
-const updateComments = comments.map(comment => ({...comment, postId: comment.id <= 5 ? 2 : 1}));
+const updateComments = comments.map(comment => ({ 
+  ...comment,
+  postId: comment.id <= 5 ? 2 : 1
+}));
+
 console.log(updateComments);
 
 // Задание 9 - Перебрать массив, чтобы объекты состояли только из айди и имени
@@ -45,7 +49,8 @@ console.log(idAndName);
 
 // Задание 10 - Перебираем массив, добавляем объектам свойство isInvalid
 
-const commentsWithValidity = comments.map(comment => ({...comment, 
+const commentsWithValidity = comments.map(comment => ({
+  ...comment,
   isInvalid: comment.body.length > 180
 }));
 
@@ -55,8 +60,8 @@ console.log(commentsWithValidity);
 
 const emailsWithReduce = comments.reduce((accumulator, comment) => {
   accumulator.push(comment.email);
-  return accumulator; 
-}, []); 
+  return accumulator;
+}, []);
 
 console.log(emailsWithReduce);
 
