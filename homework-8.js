@@ -3,7 +3,10 @@ import { productCards } from "./products.js";
 const productCardsTemplate = document.querySelector('#product-card-template');
 const allCardsContainer = document.querySelector('.all-cards-container');
 
-function createProductCard(productCard) {
+function createProductCard(cardsArray) {
+  allCardsContainer.innerHTML = '';
+
+  cardsArray.forEach(productCard => {
   const productCardClone = productCardsTemplate.content.cloneNode(true);
 
   productCardClone.querySelector('.product-img').src = `./img/${productCard.img}.png`;
@@ -23,14 +26,15 @@ function createProductCard(productCard) {
 
   productCardClone.querySelector('.product-price').innerHTML = `${productCard.price} &#8381`;
 
-  return productCardClone;
+  allCardsContainer.appendChild(productCardClone);
+ });
 }
 
-const productDescription = productCards.reduce((acc, item) => { 
+const productDescriptions = productCards.reduce((acc, item) => { 
   return [...acc, { [item.name]: item.description }];
 }, []);
 
-console.log(productDescription);
+console.log(productDescriptions);
 
 function getNumberOfCards() {
   let result = prompt("Сколько карточек отобразить? От 1 до 5", " ");
@@ -39,31 +43,19 @@ function getNumberOfCards() {
   if (result === null) {
     alert('Вы отказались от ввода');
     return 5;
-  } else if (isNaN(num)) {
-    alert('Ошибка, введено НЕ ЧИСЛО');
+  } if (isNaN(num) || num < 1 || num > 5) {
+    alert('Ошибка! Введите число от 1 до 5');
     return getNumberOfCards();
-  } else if (result > 5 || result < 1) {
-    alert('Число должно быть от 1 до 5');
-    return getNumberOfCards();
-  } else {
-    alert(`Будет отображено ${result} карточки`);
-    return result;
   }
-}
 
-function renderProductCards(cardsArray) {
-  allCardsContainer.innerHTML = '';
-
-  cardsArray.forEach(productCard => {
-    const card = createProductCard(productCard);
-    allCardsContainer.appendChild(card);
-  });
+  alert(`Будет отображено ${num} карточки`);
+  return num;
 }
 
 function init() {
   const cardsCount = getNumberOfCards();
   const cardsToShow = productCards.slice(0, cardsCount);
-  renderProductCards(cardsToShow);
+  createProductCard(cardsToShow);
 }
 
 document.addEventListener('DOMContentLoaded', init);
