@@ -26,8 +26,8 @@ function createProductCard(cardsArray) {
 
   productCardClone.querySelector('.product-price').innerHTML = `${productCard.price} &#8381`;
 
-  allCardsContainer.appendChild(productCardClone);
- });
+    allCardsContainer.appendChild(productCardClone);
+  });
 }
 
 const productDescriptions = productCards.reduce((acc, item) => { 
@@ -40,7 +40,7 @@ function getNumberOfCards() {
   let result = prompt("Сколько карточек отобразить? От 1 до 5", " ");
   const num = parseInt(result);
 
-  if (result === null) {
+  if (!result) {
     alert('Вы отказались от ввода');
     return 5;
   } if (isNaN(num) || num < 1 || num > 5) {
