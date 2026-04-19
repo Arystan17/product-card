@@ -5,17 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product Card</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="footer.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="overlay"></div>
   <h1 class="title">Выбери свой продукт</h1> 
     <button id="change-color-all-card">Сменить цвет всех карточек</button>
     <button id="change-color-first-card">Сменить цвет первой карточки</button>
     <button id="open-google">Открыть страницу Google.com</button>
     <button id="output-console-log">Вывести сообщение в консоль лог</button>
     <button id="toggle-color-btn">Изменить цвет</button>
+    <button id="open-modal">Регистрация</button>
     <ul class="all-cards-container"></ul>
     <div class="background-image"></div> 
     <template id="product-card-template">
@@ -32,11 +35,78 @@
         </div>
       </li>
     </template>
-
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <h1 class="footer_text_color">Product cards</h1>
+        <p class="footer_text_color footer_text_standard">У Нас Самые Лучшие Продукты Для Кожи!</p>
+        <div class="label">
+          <img src="./img/tg.svg" alt="telegram" width="21" height="18">
+          <img src="./img/vk.svg" alt="vk" width="24" height="14">
+        </div>
+      </div>
+      <div class="footer-subscribe">
+        <form class="subscribe-form">
+          <span class="footer_text_color">Подпишись на наши акции:</span>
+          <div class="subscribe-box">
+            <input type="email" placeholder="Введи Email..." name="email" required>
+            <div>|</div>
+            <button type="submit">Подписаться</button>
+          </div>
+        </form>
+      </div>
+      <nav class="footer_nav">
+        <h1 class="footer_text_color">Быстрые ссылки</h1>
+        <ul>
+          <li class="footer_nav_li"><a href="#" class="footer_text_color footer_text_standard">Главная</a></li>
+          <li class="footer_nav_li"><a href="#" class="footer_text_color footer_text_standard">Магазин</a></li>
+          <li><a href="#" class="footer_text_color footer_text_standard">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <hr width="66">
+      <span class="footer_text_color footer_text_standard">www.product-cards.com©all right reserve</span>
+    </div>
+  </footer>
+  <div class="modal">
+    <div class="modal-content">
+      <span id="closeRegistration" class="close-btn">&times;</span>
+      <h2>Регистрация</h2>
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="userFirstName">Имя:</label>
+          <input type="text" id="userFirstName" name="userFirstName" placeholder="Введите имя" required minlength="2">
+        </div>
+        <div class="form-group">
+          <label for="userLastName">Фамилия:</label>
+          <input type="text" id="userLastName" name="userLastName" placeholder="Введите фамилию" required minlength="2">
+        </div>
+        <div class="form-group">
+          <label for="date">Дата рождения:</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+          <label for="Login">Логин:</label>
+          <input type="text" id="Login" name="Login" placeholder="Введите логин" required minlength="4">
+        </div>
+        <div class="form-group">
+          <label for="password">Пароль:</label>
+          <input type="password" id="password" name="password" placeholder="Введите пароль" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label for="repetPassword">Повторите пароль:</label>
+          <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Повторите пароль" required minlength="6">
+        </div>
+        <button type="submit" class="submit-btn">Зарегистрироваться</button>
+      </form>
+    </div>
+  </div>
     <script src="main.js"></script>
     <script src="homework-5.js"></script>
     <script src="homework-6.js"></script>
     <script type="module" src="homework-7.js"></script>
     <script type="module" src="homework-8.js"></script>
+    <script type="module" src="homework-9.js"></script>
 </body>
 </html>
