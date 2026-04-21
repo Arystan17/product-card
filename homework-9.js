@@ -5,7 +5,7 @@ const getFormData = (form) => {
   return Object.fromEntries(formData.entries());
 };
 
-const validateEmail = (email) => {
+const isEmailValid = (email) => {
   const formatRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
   if (!email || !formatRegex.test(email)) {
@@ -24,7 +24,7 @@ emailForm.addEventListener('submit', (event) => {
         data = getFormData(form),
         email = data.email?.trim();
   
-  if (!validateEmail(email)) {
+  if (!isEmailValid(email)) {
     alert('Пожалуйста, введите email с доменом .com, .ru, .net, .org, .ua, .by или .kz');
     return;
   }
