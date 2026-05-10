@@ -15,6 +15,18 @@ export class Modal {
     this.close = this.close.bind(this);
   }
 
+  initCloseButtonListener() {
+    if (this.closeBtn) {
+      this.closeBtn.addEventListener('click', this.close);
+  }
+}
+
+  removeCloseButtonListener() {
+    if (this.closeBtn) {
+      this.closeBtn.removeEventListener('click', this.close);
+  }
+}
+
   open() {
     this.modal.classList.add('modal-showed');
 
@@ -24,10 +36,7 @@ export class Modal {
 
     this.body.classList.add('modal-open');
 
-    if (this.closeBtn) {
-      this.closeBtn.removeEventListener('click', this.close);
-      this.closeBtn.addEventListener('click', this.close);
-    }
+    this.initCloseButtonListener();
   }
 
   close() {
@@ -39,9 +48,7 @@ export class Modal {
 
     this.body.classList.remove('modal-open');
 
-    if (this.closeBtn) {
-      this.closeBtn.removeEventListener('click', this.close);
-    }
+    this.removeCloseButtonListener();
   }
 
   isOpen() {
