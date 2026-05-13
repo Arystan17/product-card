@@ -1,11 +1,15 @@
+import { Modal } from './Modal.js';
+import { Form } from './Form.js';
+
 // 4. К Форме, которая прикреплена в футере - добавить логику
 
 const getFormData = (form) => {
   const formData = new FormData(form);
+
   return Object.fromEntries(formData.entries());
 };
 
-const isEmailValid = (email) => {
+const validateEmail = (email) => {
   const formatRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
   if (!email || !formatRegex.test(email)) {
@@ -13,10 +17,12 @@ const isEmailValid = (email) => {
   }
   
   const domainRegex = /\.(com|ru|net|org|ua|by|kz)$/;
+
   return domainRegex.test(email);
 };
 
-const emailForm = document.querySelector(".subscribe-form");
+const emailForm = document.querySelector('.subscribe-form');
+
 emailForm.addEventListener('submit', (event) => {
   event.preventDefault();
   
@@ -24,7 +30,7 @@ emailForm.addEventListener('submit', (event) => {
         data = getFormData(form),
         email = data.email?.trim();
   
-  if (!isEmailValid(email)) {
+  if (!validateEmail(email)) {
     alert('Пожалуйста, введите email с доменом .com, .ru, .net, .org, .ua, .by или .kz');
     return;
   }
@@ -34,72 +40,61 @@ emailForm.addEventListener('submit', (event) => {
 
 // 5. Создать кнопку "Регистрация"
 
-const btnOpenModal = document.getElementById("open-modal"),
-      btnCloseModal = document.getElementById("closeRegistration"),
-      modal = document.querySelector(".modal"),
-      overlay = document.querySelector(".overlay"),
-      registrationForm = document.getElementById("registrationForm"),
-      body = document.body;
+const registrationModal = new Modal('registration-modal');
+const registrationForm = new Form('registrationForm');
+
+const btnOpenModal = document.getElementById('open-modal');
+const overlay = document.querySelector('.overlay');
 
 let user = null;
 
-const openModal = () => {
-  modal.classList.add('modal-showed');
-  overlay.classList.add('active');
-  body.classList.add('modal-open');
-};
+btnOpenModal.addEventListener('click', () => {
+  registrationModal.open();
+});
 
-const closeModal = () => {
-  modal.classList.remove('modal-showed');
-  overlay.classList.remove('active');
-  body.classList.remove('modal-open');
-  
-  if (registrationForm) registrationForm.reset();
-};
-
-btnOpenModal.addEventListener('click', openModal);
-btnCloseModal.addEventListener('click', closeModal);
-overlay.addEventListener('click', closeModal);
+overlay.addEventListener('click', () => {
+  registrationModal.close();
+});
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && modal.classList.contains('modal-showed')) {
-    closeModal();
+  if (event.key === 'Escape' && registrationModal.isOpen()) {
+    registrationModal.close();
   }
 });
 
-if (registrationForm) {
-  const passwordInput = registrationForm.querySelector('#password');
-  const confirmPasswordInput = registrationForm.querySelector('#repeatPassword');
-  
-  const validatePasswordMatch = () => {
-    if (passwordInput.value !== confirmPasswordInput.value) {
-      confirmPasswordInput.setCustomValidity('Пароли не совпадают');
-    } else {
-      confirmPasswordInput.setCustomValidity('');
-    }
-  };
-  
-  if (confirmPasswordInput) {
-    confirmPasswordInput.addEventListener('input', validatePasswordMatch);
+const passwordInput = registrationForm.form.querySelector('#password');
+const confirmPasswordInput = registrationForm.form.querySelector('#repeatPassword');
+
+const validatePasswordMatch = () => {
+  if (passwordInput.value !== confirmPasswordInput.value) {
+    confirmPasswordInput.setCustomValidity('Пароли не совпадают');
+  } else {
+    confirmPasswordInput.setCustomValidity('');
   }
-  
-  registrationForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const form = event.target;
-    
-    if (!form.checkValidity()) {
-      alert('Регистрация отклонена. Проверьте правильность заполнения полей.');
-      
-      form.reportValidity();
-      return;
-    }
-    
-    const data = getFormData(form);
-    data.createdOn = new Date();
-    user = data;
-    
-    console.log('Регистрация успешна:', user);
-    closeModal();
-    alert(`Регистрация успешно завершена!\nДобро пожаловать, ${data.userFirstName} ${data.userLastName}!`);
-  });
+};
+
+if (confirmPasswordInput) {
+  confirmPasswordInput.addEventListener('input', validatePasswordMatch);
 }
+
+registrationForm.form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  if (!registrationForm.isValid()) {
+    alert('Регистрация отклонена. Проверьте правильность заполнения полей.');
+    registrationForm.form.reportValidity();
+    return;
+  }
+
+  const data = registrationForm.getValues();
+
+  data.createdOn = new Date();
+  user = data;
+
+  console.log('Регистрация успешна:', user);
+
+  registrationModal.close();
+  registrationForm.reset();
+
+  alert(`Регистрация успешно завершена!\nДобро пожаловать, ${data.userFirstName} ${data.userLastName}!`);
+});
