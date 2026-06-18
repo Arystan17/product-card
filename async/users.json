@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Felix",
+      "surname": "Fiaktistov",
+      "email": "fiaktistov@mail.com",
+      "age": 26
+    },
+    {
+      "id": 2,
+      "name": "Vlad",
+      "surname": "Ivanov",
+      "email": "vlad@mail.com",
+      "age": 22
+    },
+    {
+      "id": 3,
+      "name": "Anna",
+      "surname": "Perova",
+      "email": "anna@mail.com",
+      "age": 24
+    },
+    {
+      "id": 4,
+      "name": "Asriel",
+      "surname": "Assanova",
+      "email": "assanova@mail.com",
+      "age": 24
+    }
+  ]
+}
