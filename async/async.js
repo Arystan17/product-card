@@ -37,17 +37,21 @@ async function getUsers() {
       return;
     }
 
+    const userTemplate = document.getElementById('user-template');
+
     users.forEach((user) => {
-      container.innerHTML += `
-        <div>
-          <h3>${user.name} ${user.surname}</h3>
-          <p>${user.email}</p>
-          <p>${user.age}</p>
-          <button data-id="${user.id}" class="delete-user">
-            Удалить
-          </button>
-        </div>
-      `;
+      const userCard = userTemplate.content.cloneNode(true);
+
+      userCard.querySelector('.user-name').textContent =
+        `${user.name} ${user.surname}`;
+
+      userCard.querySelector('.user-email').textContent = user.email;
+
+      userCard.querySelector('.user-age').textContent = user.age;
+
+      userCard.querySelector('.delete-user').dataset.id = user.id;
+
+      container.append(userCard);
     });
   } catch (error) {
     const message = document.getElementById('message');
@@ -73,30 +77,34 @@ deleteAllUsersButton.addEventListener('click', () => {
 getUsersButton.addEventListener('click', async () => {
   const currentUsers = JSON.parse(localStorage.getItem('users'));
 
-  if (currentUsers.length === 4) {
-    alert('Все пользователи уже отображены');
-    return;
-  }
-
   const response = await fetch('./users.json');
 
   const data = await response.json();
+
+  if (currentUsers.length === data.users.length) {
+    alert('Все пользователи уже отображены');
+    return;
+  }
 
   localStorage.setItem('users', JSON.stringify(data.users));
 
   container.innerHTML = '';
 
+  const userTemplate = document.getElementById('user-template');
+
   data.users.forEach((user) => {
-    container.innerHTML += `
-      <div>
-        <h3>${user.name} ${user.surname}</h3>
-        <p>${user.email}</p>
-        <p>${user.age}</p>
-        <button data-id="${user.id}" class="delete-user">
-          Удалить
-        </button>
-      </div>
-    `;
+    const userCard = userTemplate.content.cloneNode(true);
+
+    userCard.querySelector('.user-name').textContent =
+      `${user.name} ${user.surname}`;
+
+    userCard.querySelector('.user-email').textContent = user.email;
+
+    userCard.querySelector('.user-age').textContent = user.age;
+
+    userCard.querySelector('.delete-user').dataset.id = user.id;
+
+    container.append(userCard);
   });
 });
 
@@ -117,16 +125,20 @@ container.addEventListener('click', (event) => {
 
   container.innerHTML = '';
 
+  const userTemplate = document.getElementById('user-template');
+
   filteredUsers.forEach((user) => {
-    container.innerHTML += `
-      <div>
-        <h3>${user.name} ${user.surname}</h3>
-        <p>${user.email}</p>
-        <p>${user.age}</p>
-        <button data-id="${user.id}" class="delete-user">
-          Удалить
-        </button>
-      </div>
-    `;
+    const userCard = userTemplate.content.cloneNode(true);
+
+    userCard.querySelector('.user-name').textContent =
+      `${user.name} ${user.surname}`;
+
+    userCard.querySelector('.user-email').textContent = user.email;
+
+    userCard.querySelector('.user-age').textContent = user.age;
+
+    userCard.querySelector('.delete-user').dataset.id = user.id;
+
+    container.append(userCard);
   });
 });
