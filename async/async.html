@@ -1,0 +1,30 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Async Homework</title>
+</head>
+<body>
+  <h1>Пользователи</h1>
+
+  <p id="message">Данные загружаются</p>
+
+  <div>
+    <button id="get-users">Получить все карточки</button>
+    <button id="delete-all-users">Удалить все карточки</button>
+  </div>
+
+  <div id="users-container"></div>
+
+  <template id="user-template">
+  <div class="user-card">
+    <h3 class="user-name"></h3>
+    <p class="user-email"></p>
+    <p class="user-age"></p>
+    <button class="delete-user">Удалить</button>
+  </div>
+</template>
+
+  <script src="./async.js"></script>
+</body>
+</html>
